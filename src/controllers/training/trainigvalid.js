@@ -108,7 +108,7 @@ export const alltrain = {
       sort: joi.string().messages(customMessages),
       select: joi.string().min(3).max(100).messages(customMessages),
       page: joi.number().min(0).max(33).messages(customMessages),
-      size: joi.number().min(0).max(100).messages(customMessages),
+      size: joi.number().min(0).max(20).messages(customMessages),
       search: joi.string().min(0).max(100).messages(customMessages),
     })
     .required(),
