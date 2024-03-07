@@ -51,12 +51,7 @@ export const addtrain = {
         .max(300)
         .optional()
         .messages(customMessages),
-      max_student: joi
-        .number()
-        .min(15)
-        .max(2000)
-        .optional()
-        .messages(customMessages),
+      max_student: joi.number().optional().messages(customMessages),
     })
     .required(),
 };
@@ -89,12 +84,7 @@ export const updatetrain = {
         .max(300)
         .optional()
         .messages(customMessages),
-      max_student: joi
-        .number()
-        .min(15)
-        .max(2000)
-        .optional()
-        .messages(customMessages),
+      max_student: joi.number().optional().messages(customMessages),
     })
     .required(),
   query: joi
@@ -116,9 +106,9 @@ export const alltrain = {
   query: joi
     .object({
       sort: joi.string().messages(customMessages),
-      select: joi.string().min(0).max(100).messages(customMessages),
+      select: joi.string().min(3).max(100).messages(customMessages),
       page: joi.number().min(0).max(33).messages(customMessages),
-      size: joi.number().min(0).max(23).messages(customMessages),
+      size: joi.number().min(0).max(20).messages(customMessages),
       search: joi.string().min(0).max(100).messages(customMessages),
     })
     .required(),

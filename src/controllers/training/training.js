@@ -58,6 +58,7 @@ export const addtrain = asyncHandler(async (req, res, next) => {
 });
 
 export const alltraining = asyncHandler(async (req, res, next) => {
+  console.log(req.query);
   const allowFields = [
     "training_name",
     "start_date",
