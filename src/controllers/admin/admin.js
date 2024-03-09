@@ -200,6 +200,7 @@ export const deleteAdmin = asyncHandler(async (req, res, next) => {
 //Get user
 
 export const Getuser = asyncHandler(async (req, res, next) => {
+  console.log(req.user);
   const user = req.user;
   if (!user) {
     return next(

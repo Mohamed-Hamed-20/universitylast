@@ -14,12 +14,14 @@ const userSchema = new Schema(
     National_Id: {
       type: String,
       required: true,
+      unique: true,
       minlength: 14,
       maxlength: 14,
     },
     Student_Code: {
       type: String,
       required: true,
+      unique: true,
       minlength: 14,
       maxlength: 14,
     },

@@ -7,7 +7,9 @@ import semsterRouter from "./routes/semster.routes.js";
 import instructorRouter from "./routes/instructor.routes.js";
 import totalGratesRouter from "./routes/TotalGrates.routes.js";
 import courseRouter from "./routes/course.routes.js";
-import trainingrouter from "./routes/training.routes.js"
+import trainingRouter from "./routes/training.routes.js";
+import ExamsInRouter from "./routes/studentExams.routes.js";
+import AvailablecourseRouter from "./routes/AvailableCourses.routes.js";
 import { GlobalErrorHandling } from "./utils/errorHandling.js";
 import morgan from "morgan";
 import { hellowpage } from "./utils/templetHtml.js";
@@ -17,9 +19,9 @@ export const bootstrap = (app, express) => {
   //   "http://localhost:3000",
   //   "https://graduation-project-beryl-seven.vercel.app",
   // ];
-// {
-//       origin: allowedOrigins,
-//     }
+  // {
+  //       origin: allowedOrigins,
+  //     }
   app.use(cors());
 
   //Allow feaching Data
@@ -49,7 +51,9 @@ export const bootstrap = (app, express) => {
   app.use("/Api/courses", courseRouter);
   app.use("/Api/semster", semsterRouter);
   app.use("/Api/total_grates", totalGratesRouter);
-  app.use("/Api/training",trainingrouter)
+  app.use("/Api/training", trainingRouter);
+  app.use("/Api/student/ExamsIn", ExamsInRouter);
+  app.use("/Api/student", AvailablecourseRouter);
   //Globale error handling
   app.use(GlobalErrorHandling);
 
