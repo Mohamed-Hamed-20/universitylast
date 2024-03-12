@@ -10,6 +10,8 @@ import courseRouter from "./routes/course.routes.js";
 import trainingRouter from "./routes/training.routes.js";
 import ExamsInRouter from "./routes/studentExams.routes.js";
 import AvailablecourseRouter from "./routes/AvailableCourses.routes.js";
+import RegisterRouter from "./routes/Register.routes.js";
+import StudentCourseGrateRouter from "./routes/StudentCourseGrate.routes.js";
 import { GlobalErrorHandling } from "./utils/errorHandling.js";
 import morgan from "morgan";
 import { hellowpage } from "./utils/templetHtml.js";
@@ -45,6 +47,7 @@ export const bootstrap = (app, express) => {
   // app.use(limiter);
 
   // API
+
   app.use("/Api/user", userRouter);
   app.use("/Api/admin", adminRouter);
   app.use("/Api/instructor", instructorRouter);
@@ -54,15 +57,19 @@ export const bootstrap = (app, express) => {
   app.use("/Api/training", trainingRouter);
   app.use("/Api/student/ExamsIn", ExamsInRouter);
   app.use("/Api/student", AvailablecourseRouter);
-  //Globale error handling
-  app.use(GlobalErrorHandling);
+  app.use("/Api/student/register", RegisterRouter);
+  app.use("/Api/instructor/StudentCourseGrateRouter", StudentCourseGrateRouter);
 
   //Welcome Page
-  app.use("/", async (req, res, next) => {
+  app.get("/", async (req, res, next) => {
     console.log({ IP: req.ip });
     const result = await hellowpage();
     return res.send(`${result}`);
   });
+
   //API bad
   app.all("*", (req, res) => res.send("invalid router link or method!"));
+
+  //Globale error handling
+  app.use(GlobalErrorHandling);
 };

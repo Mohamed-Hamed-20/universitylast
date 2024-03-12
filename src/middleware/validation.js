@@ -43,6 +43,20 @@ const validateObjectId = (value, helper) => {
     : helper.message("Invalid {#label} ");
 };
 
+export const customMessages = {
+  "string.base": "{#label} must be a string",
+  "string.min": "{#label} must be at least {#limit} characters",
+  "string.max": "{#label} must be at most {#limit} characters",
+  "number.base": "{#label} must be a number",
+  "number.valid": "{#label} must be one of {#valids}",
+  "boolean.base": "{#label} must be a boolean True or false",
+  "array.base": "{#label} must be an array",
+  "array.items": "Invalid item in {#label}",
+  "_id.required": "{#label} is required",
+  "_id.optional": "{#label} is optional",
+  "any.only": "{#label} must be {#valids}",
+  "any.required": "{#label} is required",
+};
 //======================general Validation Fields========================
 export const generalFields = {
   email: joi.string().email({ tlds: { allow: ["com", "net", "org"] } }),

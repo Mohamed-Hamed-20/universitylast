@@ -15,7 +15,6 @@ const availableCoursesschema = new Schema(
       {
         type: Types.ObjectId,
         ref: "course",
-        required: true,
       },
     ],
     TotalGpa: {
@@ -27,6 +26,6 @@ const availableCoursesschema = new Schema(
   },
   { timestamps: true }
 );
-const availableCoursesModel = model("availableCourses", availableCoursesschema);
+const availableCoursesModel = model("availableCourse", availableCoursesschema);
 
 export default availableCoursesModel;

@@ -11,7 +11,5 @@ router.post(
   isAuth([roles.admin, roles.stu]),
   acc.availableCourses
 );
-// router.get("/getinfo", isAuth([roles.admin, roles.super]), ac.Getuser);
-// router.get("/info", isAuth([roles.admin]), ac.info);
-// export default router;
+
 export default router;

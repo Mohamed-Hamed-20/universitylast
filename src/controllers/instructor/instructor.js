@@ -108,10 +108,14 @@ export const CreateInstructor = asyncHandler(async (req, res, next) => {
     const MaterialsIds = arrayofIds(Materials);
     const findMaterialsIds = await CourseModel.find({
       _id: { $in: MaterialsIds },
+      OpenForRegistration: true,
     });
     if (findMaterialsIds.length !== Materials.length) {
       return next(
-        new Error("Invalid One or more Materials Ids", { cause: 404 })
+        new Error(
+          "Invalid One or more Materials Ids or course Not OpenForRegistration",
+          { cause: 404 }
+        )
       );
     }
     user.Materials = findMaterialsIds;
@@ -197,10 +201,14 @@ export const updateInstructor = asyncHandler(async (req, res, next) => {
     ) {
       const findMaterialsIds = await CourseModel.find({
         _id: { $in: MaterialsIds },
+        OpenForRegistration: true,
       });
       if (findMaterialsIds.length !== MaterialsIds.length) {
         return next(
-          new Error("Invalid One or more Materials Ids", { cause: 404 })
+          new Error(
+            "Invalid One or more Materials Ids or course Not OpenForRegistration",
+            { cause: 404 }
+          )
         );
       }
       user.Materials = findMaterialsIds;
@@ -236,11 +244,16 @@ export const deleteInstructor = asyncHandler(async (req, res, next) => {
 //Get user
 export const Getuser = asyncHandler(async (req, res, next) => {
   const user = req.user;
+
   if (!user) {
     return next(
       new Error("Invalid User Data please Try Again", { cause: 500 })
     );
   }
+  await user.populate({
+    path: "Materials",
+    select: "_id course_name desc credit_hour",
+  });
 
   const result = {
     FullName: user.FullName,
@@ -250,6 +263,7 @@ export const Getuser = asyncHandler(async (req, res, next) => {
     gender: user.gender,
     department: user?.department,
     role: user.role,
+    Materials: user.Materials,
   };
   return res.status(200).json({ message: "Done", user: result });
 });

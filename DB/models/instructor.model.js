@@ -72,6 +72,7 @@ const InstructorSchema = new Schema(
       {
         type: Types.ObjectId,
         ref: "course",
+        unique: true,
       },
     ],
   },

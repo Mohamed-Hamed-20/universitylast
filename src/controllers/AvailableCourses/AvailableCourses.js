@@ -26,7 +26,8 @@ export const availableCourses = asyncHandler(async (req, res, next) => {
 
   // Get all valid courses and IDs
   const { validCourses, validCoursesIds } = await getAllValidCourses(
-    passedCourses
+    passedCourses,
+    userId
   );
 
   // Check if available courses exist
