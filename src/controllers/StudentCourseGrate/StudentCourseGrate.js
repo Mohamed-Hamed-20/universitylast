@@ -67,6 +67,11 @@ export const addcoursegrate = asyncHandler(async (req, res, next) => {
   register.coursesRegisterd = coursesRegisterd;
   await register.save();
 
+
+
+  
+
+
   return res.json({ messgae: "Done grate added successfully", result: result });
 });
 export const updatecoursegrate = asyncHandler(async (req, res, next) => {});
