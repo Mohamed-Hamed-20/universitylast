@@ -1,16 +1,17 @@
 import { Schema, model, Types } from "mongoose";
 const Registerschema = new Schema(
   {
-    StudentId: {
+    studentId: {
       type: Types.ObjectId,
       ref: "user",
       required: true,
     },
-    Available_CoursesId: {
+    semsterId: {
       type: Types.ObjectId,
-      ref: "availableCourse",
+      ref: "semster",
       required: true,
     },
+
     Available_Hours: {
       type: Number,
       required: true,
